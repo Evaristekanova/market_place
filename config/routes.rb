@@ -1,6 +1,16 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  namespace :api do
+    namespace :v1, path: '/' do
+      resources :users
+
+
+      namespace :auth, path: "/" do
+        post "/login", to: "sessions#create"
+      end
+    end
+  end
+
 end
