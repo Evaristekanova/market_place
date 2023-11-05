@@ -12,14 +12,12 @@
 #  updated_at      :datetime         not null
 #
 class User < ApplicationRecord
-
     has_secure_password
 
     validates :email, presence: true, uniqueness: true
     validates :phone, presence: true, uniqueness: true
 
     after_create :send_welcome_email
-
 
     def send_welcome_email
         UserMailer.with(user: self).welcome_email.deliver_now
