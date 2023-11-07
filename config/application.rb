@@ -4,6 +4,7 @@ require "rails/all"
 require "sprockets/railtie"
 
 Bundler.require(*Rails.groups)
+Dotenv::Railtie.load if %w[development test].include? ENV["RAILS_ENV"]
 
 module MarketPlace
   class Application < Rails::Application

@@ -13,6 +13,9 @@ gem 'sprockets', '<4'
 gem 'sass-rails'
 gem 'dotenv-rails'
 gem 'arctic_admin'
+gem 'jsonapi-serializer'
+gem 'bcrypt'
+
 
 
 group :development, :test do
