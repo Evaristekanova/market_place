@@ -1,4 +1,4 @@
-class Api::V1::Auth::SessionsController <ApiController
+class API::V1::Auth::SessionsController <APIController
 
     def create
         user = User.find_by(email: params[:email])

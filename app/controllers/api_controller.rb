@@ -1,4 +1,4 @@
-class ApiController < ActionController::API
+class APIController < ActionController::API
 include Authenticable
 include ErrorHandler
 rescue_from StandardError, with: :error_handler

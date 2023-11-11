@@ -1,4 +1,4 @@
-class Api::V1::UsersController < ApiController
+class API::V1::UsersController < APIController
     before_action :set_user, except: [:create]
     before_action :user_params, only: [:create, :update]
     before_action :authenticate_user, only: [:update, :destroy]
