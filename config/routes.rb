@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1, path: '/' do
       resources :users
-      resources :products
+      resources :products, only: %i[index show]
 
 
       namespace :auth, path: "/" do
