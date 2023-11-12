@@ -1,7 +1,6 @@
-class Api::V1::UsersController < ApiController
-    before_action :set_user, except: [:create]
-    before_action :user_params, only: [:create, :update]
-    before_action :authenticate_user, only: [:update, :destroy]
+class API::V1::UsersController < APIController
+    before_action :authenticate_user, except: %i[create]
+    before_action :set_user except: %i[create]
 
     def show
         render json: UserSerializer.new(@user).serializable_hash[:data][:attributes], status: :ok
@@ -29,11 +28,10 @@ class Api::V1::UsersController < ApiController
     end
 
     def set_user
-        @user = User.find(params[:id])
+        @user = current_user
     end
 
     def authenticate_user
-        return current_user if current_user.present?
-        render json: { errors: "You're not authorized to perform this action" }, status: :unauthorized
+        render json: { errors: "You're not authorized to perform this action" }, status: :unauthorized unless current_user.present?
     end
 end
