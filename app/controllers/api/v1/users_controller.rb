@@ -1,6 +1,6 @@
 class API::V1::UsersController < APIController
     before_action :authenticate_user, except: %i[create]
-    before_action :set_user except: %i[create]
+    before_action :set_user, except: %i[create]
 
     def show
         render json: UserSerializer.new(@user).serializable_hash[:data][:attributes], status: :ok
