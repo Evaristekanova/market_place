@@ -9,15 +9,14 @@ class API::V1::WishListsController < APIController
     end
 
     def create
-        @wish_list = current_user.wish_list || current_user.create_wish_list
-        @product = Product.find(wish_list_params[:product_id])
-
-        # check if product is already in wish list
-        unless @wish_list.products.include?(@product)
-            @wish_list.products << @product
-        end
-
+      @wish_list = current_user.wish_list || current_user.create_wish_list
+      @product = Product.find(wish_list_params[:product_id])
+      if @wish_list.products.include?(@product)
+        render json: { error: 'Product already in wishlist' }, status: :unprocessable_entity
+      else
+        @wish_list.products << @product
         render json: WishListSerializer.new(@wish_list).serializable_hash[:data][:attributes], status: :created
+      end
     end
 
 
