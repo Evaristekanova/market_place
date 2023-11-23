@@ -6,7 +6,7 @@
 #  description :string
 #  name        :string
 #  price       :decimal(, )
-#  published   :boolean
+#  published   :boolean          default(TRUE)
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
