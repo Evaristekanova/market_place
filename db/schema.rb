@@ -81,7 +81,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_14_230751) do
     t.decimal "price"
     t.string "name"
     t.string "description"
-    t.boolean "published"
+    t.boolean "published", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
