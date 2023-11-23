@@ -13,13 +13,16 @@
 class Product < ApplicationRecord
     include Filterable
     has_one_attached :image
+    
+    has_and_belongs_to_many :wish_lists
+    has_many :comments, as: :commentable
 
     validates :name, presence: true
     validates :price, presence: true, numericality: {greater_than_or_equal_to: 0}
     validates :description, presence: true
 
     scope :published, -> {where(published: true)}
-    scope :name, -> (name) {where("LOWER(name) LIKE ?", "%#{name.downcase}%")}
+    scope :by_name, -> (name) {where("LOWER(name) LIKE ?", "%#{name.downcase}%")}
     scope :description, -> (description) {where("LOWER(description) LIKE ?", "%#{description.downcase}%")}
     scope :price_min, -> (min_price) {where("price >= ?", min_price)}
     scope :price_max, -> (max_price) {where("price <= ?", max_price)}

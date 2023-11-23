@@ -4,8 +4,10 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1, path: '/' do
-      resource :users
+      resources :users
       resources :products, only: %i[index show]
+      resources :comments, only: %i[create]
+      resources :wish_lists, only: %i[index create destroy]
 
 
       namespace :auth, path: "/" do
