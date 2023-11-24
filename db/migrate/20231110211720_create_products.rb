@@ -5,9 +5,7 @@ class CreateProducts < ActiveRecord::Migration[7.0]
       t.string :name
       t.string :description
       t.boolean :published, :default => true
-      #Ex:- :default =>''
       
-
       t.timestamps
     end
   end
