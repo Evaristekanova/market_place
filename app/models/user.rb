@@ -17,6 +17,7 @@ class User < ApplicationRecord
     has_one :wish_list
     has_many :wished_products, through: :wish_list, source: :products
     has_many :comments, as: :commentable
+    has_many :orders
 
     validates :email, presence: true, uniqueness: true
     validates :phone, presence: true, uniqueness: true
