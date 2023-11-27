@@ -15,8 +15,11 @@ class User < ApplicationRecord
     has_secure_password
     
     has_one :wish_list
+    has_many :products, through: :wish_list
     has_many :wished_products, through: :wish_list, source: :products
     has_many :comments, as: :commentable
+    has_many :orders
+    has_many :order_items, through: :orders
 
     validates :email, presence: true, uniqueness: true
     validates :phone, presence: true, uniqueness: true
