@@ -13,7 +13,6 @@ class API::V1::CommentsController < APIController
   end
 
   def authenticate_user!
-    puts "current_user: #{current_user}"
     return render json: { error: 'Login first before you make a comment' }, status: :unauthorized unless current_user.present?
   end
 end
